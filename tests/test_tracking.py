@@ -27,7 +27,7 @@ class TestBoxOutput(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmpdir:
             copy('tests/reference_files/Well1-Pos001-1.tif', tmpdir)
-            
+
             local_path = os.path.dirname(cell_track.__file__)
             modelpath = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
             model = safe_load_model(modelpath)

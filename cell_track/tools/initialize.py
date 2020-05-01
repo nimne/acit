@@ -43,6 +43,8 @@ def init(traindata=False):
 
     local_path = os.path.dirname(cell_track.__file__)
     model_path = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
+    model_dir = os.path.join(local_path, 'trained_models/')
+    Path(model_dir).mkdir(parents=True, exist_ok=True)
 
     p = Path(os.path.abspath(os.path.dirname(__file__)))
     if os.path.exists(model_path):
