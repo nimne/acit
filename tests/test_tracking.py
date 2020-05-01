@@ -18,6 +18,7 @@ from cell_track.tools.initialize import init
 class TestBoxOutput(unittest.TestCase):
     def setUp(self) -> None:
         keras.backend.tensorflow_backend.set_session(get_session())
+        init()
 
     def test_tracking(self):
         from xml.etree import ElementTree as ET
@@ -49,5 +50,4 @@ class TestBoxOutput(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    init()
     unittest.main()
