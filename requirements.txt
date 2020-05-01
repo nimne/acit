@@ -12,4 +12,4 @@ PySimpleGUI
 pandas
 keras==2.2.5
 discover
-cv2
+opencv-python
