@@ -43,7 +43,8 @@ def init(traindata=False):
     if os.path.exists(model_path):
         return True
     else:
-        print("Looks like the inference model isn't downloaded, downloading..")
+        print("Looks like the inference model isn't downloaded, downloading to: \n"
+              + str(model_path))
         print("This file is large (~149 mb), please be patient")
         # 1. Download
         # 2. md5sum (if wrong, delete, raise value error
