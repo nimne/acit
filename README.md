@@ -24,7 +24,9 @@ These include:
 - Spots that are within 20 px are chosen based on 1: highest score, then 2: box size (with bigger boxes winning).
 
 ## Installation
-In addition to this program, FiJi and ffmpeg are necessary for full functionality.
+In addition to this program, FiJi and ffmpeg are necessary for full functionality. Note that this
+only works with Python 3.6 and 3.7 due to tensorflow version requirements. This should
+work on Linux, Windows, and MacOS, but is only tested on Linux and MacOS.
 
 ### Installing FiJi
 Cell tracking requires a functioning installation of [FiJi](https://imagej.net/Fiji) in your path.

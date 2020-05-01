@@ -5,6 +5,7 @@ from urllib.request import urlopen
 import hashlib
 import sys
 import requests
+import cell_track
 
 
 def download(url, filename):
@@ -38,12 +39,19 @@ def init(traindata=False):
         bool: True for files exist.
     """
 
+    import cell_track
+
+    local_path = os.path.dirname(cell_track.__file__)
+    model_path = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
+    model_dir = os.path.join(local_path, 'trained_models/')
+    Path(model_dir).mkdir(parents=True, exist_ok=True)
+
     p = Path(os.path.abspath(os.path.dirname(__file__)))
-    model_path = p / ".." / "trained_models" / "resnet50_csv_v1.0.h5"
-    if not os.path.exists(model_path):
+    if os.path.exists(model_path):
         return True
     else:
-        print("Looks like the inference model isn't downloaded, downloading..")
+        print("Looks like the inference model isn't downloaded, downloading to: \n"
+              + str(model_path))
         print("This file is large (~149 mb), please be patient")
         # 1. Download
         # 2. md5sum (if wrong, delete, raise value error
@@ -57,10 +65,12 @@ def init(traindata=False):
             raise ValueError("md5 mismatch between downloaded model and expected. "
                              "Please try again. If this fails, raise a github issue.")
 
-        if not os.path.exists(model_path):
+        elif not os.path.exists(model_path):
             raise ValueError("Failed to download inference model, please "
                              "retry in a few minutes. If this fails, raise "
                              "an issue on GitHub")
+        else:
+            return True
 
 
 

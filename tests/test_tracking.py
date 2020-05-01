@@ -14,6 +14,7 @@ import warnings
 import os
 from cell_track.tools.initialize import init
 
+import cell_track
 
 class TestBoxOutput(unittest.TestCase):
     def setUp(self) -> None:
@@ -22,10 +23,13 @@ class TestBoxOutput(unittest.TestCase):
     def test_tracking(self):
         from xml.etree import ElementTree as ET
         from cell_track.tools.trackmate import Track
+        self.assertTrue(init())
+
         with tempfile.TemporaryDirectory() as tmpdir:
             copy('tests/reference_files/Well1-Pos001-1.tif', tmpdir)
-            # convert into inference model
-            modelpath = "cell_track/trained_models/resnet50_csv_v1.0.h5"
+
+            local_path = os.path.dirname(cell_track.__file__)
+            modelpath = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
             model = safe_load_model(modelpath)
             track_tiff_folder(tmpdir, model)
 
@@ -49,5 +53,4 @@ class TestBoxOutput(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    init()
     unittest.main()

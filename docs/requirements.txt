@@ -12,3 +12,7 @@ PySimpleGUI
 pandas
 keras==2.2.5
 discover
+sphinx
+sphinxcontrib-apidoc
+recommonmark
+sphinx_rtd_theme
