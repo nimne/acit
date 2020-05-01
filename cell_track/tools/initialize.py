@@ -5,6 +5,7 @@ from urllib.request import urlopen
 import hashlib
 import sys
 import requests
+import cell_track
 
 
 def download(url, filename):
@@ -38,8 +39,12 @@ def init(traindata=False):
         bool: True for files exist.
     """
 
+    import cell_track
+
+    local_path = os.path.dirname(cell_track.__file__)
+    model_path = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
+
     p = Path(os.path.abspath(os.path.dirname(__file__)))
-    model_path = p / ".." / "trained_models" / "resnet50_csv_v1.0.h5"
     if os.path.exists(model_path):
         return True
     else:

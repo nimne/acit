@@ -4,11 +4,12 @@ Standalone script to run all parts of the cell tracking and output useful data.
 import sys
 import os
 from cell_track.tools.initialize import init
+import cell_track
 
 init()
 
-local_path = os.path.dirname(os.path.realpath(__file__))
-model_path = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0_inference.h5')
+local_path = os.path.dirname(cell_track.__file__)
+model_path = os.path.join(local_path, 'trained_models/resnet50_csv_v1.0.h5')
 
 def show_exception_and_exit(exc_type, exc_value, tb):
     """Capture exceptions and print them to the console before exiting."""
