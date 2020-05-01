@@ -40,7 +40,7 @@ def init(traindata=False):
 
     p = Path(os.path.abspath(os.path.dirname(__file__)))
     model_path = p / ".." / "trained_models" / "resnet50_csv_v1.0.h5"
-    if not os.path.exists(model_path):
+    if os.path.exists(model_path):
         return True
     else:
         print("Looks like the inference model isn't downloaded, downloading..")
@@ -57,10 +57,12 @@ def init(traindata=False):
             raise ValueError("md5 mismatch between downloaded model and expected. "
                              "Please try again. If this fails, raise a github issue.")
 
-        if not os.path.exists(model_path):
+        elif not os.path.exists(model_path):
             raise ValueError("Failed to download inference model, please "
                              "retry in a few minutes. If this fails, raise "
                              "an issue on GitHub")
+        else:
+            return True
 
 
 

@@ -18,11 +18,12 @@ from cell_track.tools.initialize import init
 class TestBoxOutput(unittest.TestCase):
     def setUp(self) -> None:
         keras.backend.tensorflow_backend.set_session(get_session())
-        init()
 
     def test_tracking(self):
         from xml.etree import ElementTree as ET
         from cell_track.tools.trackmate import Track
+        self.assertTrue(init())
+
         with tempfile.TemporaryDirectory() as tmpdir:
             copy('tests/reference_files/Well1-Pos001-1.tif', tmpdir)
             # convert into inference model

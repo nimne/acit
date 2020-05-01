@@ -142,3 +142,5 @@ cell_track/utilities/training/train/no_cells/*
 
 # Prevent training logs from ending up in repo
 cell_track/utilities/training/logs/
+
+*.tmp

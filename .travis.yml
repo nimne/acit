@@ -11,10 +11,7 @@ matrix:
       python: 3.6           # this works for Linux but is ignored on macOS or Windows
       dist: xenial          # required for Python >= 3.7
       env: TOXENV=py36
-    - name: "Pypy 3.5 on Xenial Linux"
-      python: "pypy3"       # this works for Linux but is ignored on macOS or Windows
-      dist: xenial          # required for Python >= 3.7
-      env: TOXENV=pypy3
+
     - name: "Python 3.7.2 on macOS"
       os: osx
       osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
