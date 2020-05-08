@@ -12,3 +12,4 @@ PySimpleGUI
 pandas
 keras==2.2.5
 discover
+PySimpleGUI

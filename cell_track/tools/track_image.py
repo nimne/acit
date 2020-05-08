@@ -51,7 +51,7 @@ def track_lif(lif_path: str, out_path: str , model: keras.models.Model) -> None:
             image_array = np_image[:, :, ::-1].copy()
 
             tm_xml.filename = name + '.tif'
-            tm_xml.imagepath = os.path.join(out_path, image.image_path)
+            tm_xml.imagepath = os.path.join(out_path, image.path)
             if tm_xml.nframes < i:  # set nframes to the maximum i
                 tm_xml.nframes = i
             tm_xml.frame = i
