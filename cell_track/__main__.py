@@ -102,7 +102,7 @@ from cell_track.tools.track_image import track_lif  # noqa
 
 
 lif_list = glob.glob(os.path.join(lif_folder, '*.lif'))
-if len(lif_list) > 1:
+if len(lif_list) < 1:
     raise ValueError("No LIF files to process.")
 
 def getOutLifPath(lif_path):
@@ -130,11 +130,13 @@ for liffile in lif_list:
 if enable_track:
     import subprocess
     import shutil
-
+    # Todo: This looks for the bin, not necessarily the 'path'
+    # Todo: Automatically look for the trackmate 'plugin'. Downlaod if not exists.
     imagej_bins = ['ImageJ-linux64',
                    'ImageJ-macosx',
                    'ImageJ',
                    'ImageJ-win64.exe',
+                   '/Applications/Fiji.app/Contents/MacOS/ImageJ-macosx',
                    str(os.environ.get('IJ_BIN_PATH'))]
     imagej_path = None
     for bin in imagej_bins:
@@ -146,12 +148,16 @@ if enable_track:
     if imagej_path is None:
         raise RuntimeError("Can't find ImageJ exec. Link / Add 'ImageJ' to the $PATH")
 
+
+    ij_script = str(os.path.join(local_path, 'ImageJ/TrackmateHeadlessPyWin.py'))
+
     for liffile in lif_list:
         outpath = getOutLifPath(liffile)
         if sys.platform.startswith('win'):
-            os.system(imagej_path + ' --ij2 --headless --console --run "./ImageJ/TrackmateHeadlessPyWin.py" "infilename=\'' + outpath + '\'"')
+            os.system(imagej_path + ' --ij2 --headless --console --run "' +
+                      ij_script + '" "infilename=\'' + outpath + '\'"')
         else:
-            subprocess.run([imagej_path, '--headless', './ImageJ/TrackmateHeadlessPy.py', outpath])
+            subprocess.run([imagej_path, '--headless', ij_script, outpath])
 
 # Make summary CSV files for each lif?
 if make_csv:
