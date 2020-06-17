@@ -35,7 +35,7 @@ def track_lif(lif_path: str, out_path: str , model: keras.models.Model) -> None:
             print(str(path) + '.xml' + ' exists, skipping')
             continue
 
-        make_dirs = os.path.join(out_path, path)
+        make_dirs = os.path.join(out_path, folder_path)
         if not os.path.exists(make_dirs):
             os.makedirs(make_dirs)
 
