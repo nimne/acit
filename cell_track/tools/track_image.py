@@ -27,7 +27,7 @@ def track_lif(lif_path: str, out_path: str , model: keras.models.Model) -> None:
     print("Iterating over lif")
     for image in lif_data.get_iter_image():
         folder_path = "/".join(str(image.path).strip("/").split('/')[1:])
-        path = folder_path + str(image.name)
+        path = folder_path + "/" + str(image.name)
         name = image.name
 
         if os.path.exists(os.path.join(out_path, path + '.tif.xml')) \
@@ -35,7 +35,7 @@ def track_lif(lif_path: str, out_path: str , model: keras.models.Model) -> None:
             print(str(path) + '.xml' + ' exists, skipping')
             continue
 
-        make_dirs = os.path.join(out_path, image.path)
+        make_dirs = os.path.join(out_path, path)
         if not os.path.exists(make_dirs):
             os.makedirs(make_dirs)
 
