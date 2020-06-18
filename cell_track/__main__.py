@@ -149,14 +149,16 @@ if enable_track:
         raise RuntimeError("Can't find ImageJ exec. Link / Add 'ImageJ' to the $PATH")
 
 
-    ij_script = str(os.path.join(local_path, 'ImageJ/TrackmateHeadlessPyWin.py'))
+
 
     for liffile in lif_list:
         outpath = getOutLifPath(liffile)
         if sys.platform.startswith('win'):
+            ij_script = str(os.path.join(local_path, 'ImageJ/TrackmateHeadlessPyWin.py'))
             os.system(imagej_path + ' --ij2 --headless --console --run "' +
                       ij_script + '" "infilename=\'' + outpath + '\'"')
         else:
+            ij_script = str(os.path.join(local_path, 'ImageJ/TrackmateHeadlessPy.py'))
             subprocess.run([imagej_path, '--headless', ij_script, outpath])
 
 # Make summary CSV files for each lif?
