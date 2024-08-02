@@ -10,6 +10,6 @@ sk-video
 opencv-python
 PySimpleGUI
 pandas
-keras==2.2.5
+keras==2.13.1
 discover
 PySimpleGUI
